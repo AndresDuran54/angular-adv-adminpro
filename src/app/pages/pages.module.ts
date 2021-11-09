@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [ 
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ComponentsModule,
   ]
 })
 export class PagesModule { }
