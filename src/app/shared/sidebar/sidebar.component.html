@@ -31,7 +31,16 @@
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let subItem of item.submenu">
-                            <a [routerLink]="subItem.url">{{subItem.titulo}}</a>
+                            <!--routerLinkActive -> clase que se le asigna a la eqtiqueta si 
+                            el link actual hace match con el router Link-->
+                            <!--routerLinkActiveOptions -> reglas del match,
+                            exact -> ambas deben de ser iguales, no tan solo contener la 
+                            porción de la url-->
+                            <a [routerLink]="subItem.url"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                {{subItem.titulo}}
+                            </a>
                         </li>
                     </ul>
                 </li>
