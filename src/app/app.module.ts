@@ -21,6 +21,8 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
     AuthModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

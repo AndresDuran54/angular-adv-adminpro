@@ -10,8 +10,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 const routes: Routes = [
     {
-        path: 'dashboard', 
-        component: PagesComponent,
+        path: 'dashboard', component: PagesComponent,
         children: [
             {path: '', component: DashboardComponent, data: { titulo: 'Dashboard' }},
             {path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBar' }},

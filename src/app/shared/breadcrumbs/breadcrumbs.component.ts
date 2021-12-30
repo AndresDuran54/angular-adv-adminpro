@@ -14,15 +14,20 @@ export class BreadcrumbsComponent implements OnDestroy{
   public titulo: String = "";
   public tituloSubs$: Subscription;
 
+  //Router -> Un servicio que proporciona navegación entre vistas y 
+  //capacidades de manipulación de URL.
   constructor( private router: Router){
+
     this.tituloSubs$ = this.getArgumentosRuta()
       .subscribe( ({titulo}) => {
         this.titulo = titulo;
         document.title = `Admin-pro ${titulo}`;
-      });
-    }
+      }
+    );
+  }
 
   getArgumentosRuta(){
+    //events -> Un flujo de eventos para enrutar eventos en este NgModule.
     return this.router.events
     .pipe(
       filter((event : any) => event instanceof ActivationEnd),
