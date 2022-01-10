@@ -4,13 +4,13 @@
             <ul id="sidebarnav">
                 <li class="user-profile">
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                        <img src="./assets/images/users/profile.png" alt="user" />
+                        <img [src]="this.usuario.imagenUsuario" alt="user" />
                         <span class="hide-menu">
-                            Steave Jobs
+                            {{this.usuario.nombre}}
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">My Profile </a></li>
+                        <li><a routerLink="./perfil" routerLinkActive="active">My Profile </a></li>
                         <li><a href="javascript:void()">My Balance</a></li>
                         <li><a href="javascript:void()">Inbox</a></li>
                         <li><a routerLink="/dashboard/account-settings">Account Setting</a></li>

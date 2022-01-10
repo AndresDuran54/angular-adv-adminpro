@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuarios.model';
 
 const url_prod = environment.url_prod;
 declare const gapi : any;
@@ -17,6 +18,15 @@ declare const gapi : any;
 export class UsuariosService {
 
   public auth2: any;
+  public usuario: Usuario | undefined;
+
+  get token(){
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(){
+    return this.usuario?.uid || '';
+  }
 
   constructor(private httpClient: HttpClient,
     private router: Router,
@@ -42,18 +52,45 @@ export class UsuariosService {
     });
   };
 
+  actualizarDatos(data: {
+    nombre: String,
+    email: String,
+    role?: String
+  }): Observable<any>{
+
+    data.role = this.usuario?.role || 'USER_ROLE';
+
+    return this.httpClient.put(`${url_prod}/usuarios/${this.uid}`, data,{
+      headers: {
+        "x-token": this.token
+      }
+    });
+  }
+
   validarToken(): Observable<any>{
-    const token = localStorage.getItem('token') || '';
 
     return this.httpClient.get(`${url_prod}/login/renew`, {
       headers: {
-        "x-token": token
+        "x-token": this.token
       }
     })
       .pipe(
         //Solamente se ejecuta si no ocurrio un error
         tap(
-          resp => localStorage.setItem('token', token)
+          (resp:any) => {
+            localStorage.setItem('token', resp.token);
+
+            const  {
+              email,
+              google,
+              img,
+              nombre,
+              role,
+              uid
+            } = resp.usuario;
+
+            this.usuario = new Usuario(nombre, email, img, role, google, uid);
+          }
         ),
         map(
           resp => true

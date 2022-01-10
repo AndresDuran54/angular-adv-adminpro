@@ -1,3 +1,6 @@
+import { environment } from "src/environments/environment";
+
+const base_url = environment.url_prod;
 
 export class Usuario{
 
@@ -10,6 +13,20 @@ export class Usuario{
         public uid? :String
     ){
 
+    }
+
+    //http://localhost:3000/api/upload/medicos/286b8130-7c21-43e1-bcaf-2181a2a8617f.jpg
+    get imagenUsuario(){
+        
+        if(this.img?.includes('https')){
+            return this.img;
+        }
+
+        if(this.img){
+            return `${base_url}/upload/usuarios/${this.img}`;
+        }else{
+            return `${base_url}/upload/usuarios/no-image`;
+        }
     }
 
 } 

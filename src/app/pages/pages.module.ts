@@ -11,6 +11,8 @@ import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   //Componentes que vamos a utilizar en el módulo
@@ -21,7 +23,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     PagesComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    PerfilComponent
   ],
   //Exportamos todos los componentes para que cuando se importe
   //este modulo tbm se importen automaticamente
@@ -32,13 +35,15 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     PagesComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    PerfilComponent
   ],
   imports: [ 
     CommonModule,
     SharedModule,
     RouterModule,
     ComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule{

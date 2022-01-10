@@ -15,3 +15,11 @@
     justify-content: center;
     text-align: center;
 }
+
+.img-usuario{
+    height: 200px;
+    width: 200px;
+    margin: 0px auto 25px auto;
+    display: block;
+    border-radius: 5px;
+}

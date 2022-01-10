@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       ]
     ],
     password: [
-      '123456',
+      '',
       [
         Validators.required
       ]
