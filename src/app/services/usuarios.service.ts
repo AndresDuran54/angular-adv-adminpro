@@ -4,9 +4,10 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { LoginForm } from '../interfaces/login-form.interface';
-import { tap, map, catchError } from 'rxjs/operators';
+import { tap, map, catchError, delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuarios.model';
+import { CargarUsuarios } from '../models/cargarUsuarios.model';
 
 const url_prod = environment.url_prod;
 declare const gapi : any;
@@ -26,6 +27,12 @@ export class UsuariosService {
 
   get uid(){
     return this.usuario?.uid || '';
+  }
+
+  get headers(){
+    return {
+      'x-token': this.token
+    }
   }
 
   constructor(private httpClient: HttpClient,
@@ -141,5 +148,48 @@ export class UsuariosService {
           }
         )
       );
+  }
+
+  obtenerUsuarios(desde?: number){
+    return this.httpClient.get<CargarUsuarios>(
+      `${url_prod}/usuarios?desde=${desde}`,
+      {
+        headers: this.headers
+      }
+    ).pipe(
+      map(
+        (resp) => {
+
+          const usuarios = resp.usuarios.map(
+            u => new Usuario(u.nombre, u.email, u.img, u.role, u.google, u.uid)
+          )
+
+          return {
+            usuarios,
+            total: resp.total
+          }
+        }
+      )
+    )
+
+  }
+
+  elimarUsuario(uid: String){
+
+    return this.httpClient.delete(
+      `${url_prod}/usuarios/${uid}`,
+      {
+        headers: this.headers
+      }
+    );
+
+  }
+
+  actualizarUsuario(usuario: Usuario): Observable<any>{
+
+    return this.httpClient.put(`${url_prod}/usuarios/${usuario.uid}`, usuario, 
+    {
+      headers: this.headers
+    });
   }
 }

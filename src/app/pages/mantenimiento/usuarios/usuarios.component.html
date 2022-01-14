@@ -1,0 +1,79 @@
+<div class="row animated fadeInLeft fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control"
+                    placeholder="Buscar usuarios"
+                    #txtUsuarios
+                    (keyup)="this.buscar(txtUsuarios.value)">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="this.cargando" class="row animated fadeInRight fast">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!this.cargando" class="row animated fadeInLeft fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios [{{this.total}}]</h4>
+                <h6 class="card-subtitle">Usuarios registrados en la base de datos</h6>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th class="w100">Role</th>
+                                <th class="w140">Auth</th>
+                                <th class="w100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of this.usuarios">
+                                <td>
+                                    <img [src]="usuario.imagenUsuario" 
+                                        alt=""
+                                        class="avatar"
+                                        (click)="this.abrirModal(usuario)">
+                                </td>
+                                <td>{{usuario.nombre}}</td>
+                                <td>{{usuario.email}}</td>
+                                <td>
+                                    <select
+                                        [(ngModel)]="usuario.role"
+                                        (change)="actualizarRole(usuario)"
+                                    >
+                                        <option value="USER_ROL">User</option>
+                                        <option value="ADMIN_ROL">Admin</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span *ngIf="!usuario.google" class="badge rounded-pill bg-primary">Email</span>
+                                    <span *ngIf="usuario.google" class="badge rounded-pill bg-danger">Google</span>
+                                </td>
+                                <td class="text-nowrap">
+                                    <a data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a (click)="this.borrarUsuario(usuario)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button (click)="this.cambiarDesde(-5)" type="button" class="btn btn-light">Anterior</button>
+                &nbsp;
+                <button (click)="this.cambiarDesde(5)" type="button" class="btn btn-light">Siguiente</button>
+            </div>
+        </div>
+    </div>
+</div>

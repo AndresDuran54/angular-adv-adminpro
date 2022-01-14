@@ -10,7 +10,7 @@ export class Usuario{
         public img? :String,
         public role? :String,
         public google? :boolean,
-        public uid? :String
+        public uid? :String,
     ){
 
     }
