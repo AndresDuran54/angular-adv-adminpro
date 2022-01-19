@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle">Información del médico</h6>
+                <h4 class="card-title">Médico</h4>
+                <form class="form p-t-20" [formGroup]="this.medicoForm">
+                    <div class="form-group">
+                        <img src="http://localhost:3000/api/upload/usuarios/no-image" 
+                            alt=""
+                            class="w200"
+                            *ngIf="this.medico"
+                        />
+                        <label for="exampleInputuname">Nombre del médico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" placeholder="Username"
+                                formControlName="nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd2">Hospital</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <select class="form-control" formControlName="hospital">
+                                <option value="">Seleccione un hospital</option>
+                                <option *ngFor="let hospital of hospitales"
+                                    [value]="hospital._id">
+                                    {{hospital.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10"
+                        (click)="enviar()">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6" *ngIf="this.hospital">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Información del hospital</h6>
+                <form class="form p-t-20">
+                    <img [src]="this.hospital.img | imagen: 'hospitales'" 
+                        alt=""
+                        class="w200 img-thumbnail"
+                    />
+                    <br>
+                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

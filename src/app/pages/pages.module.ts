@@ -15,7 +15,11 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Mantenimiento
 import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
-
+import { HospitalesComponent } from './mantenimiento/hospitales/hospitales.component';
+//Pipes
+import { PipesModule } from '../pipes/pipes.module';
+import { MedicosComponent } from './mantenimiento/medicos/medicos.component';
+import { MedicoComponent } from './mantenimiento/medicos/medico.component';
 @NgModule({
   //Componentes que vamos a utilizar en el módulo
   declarations: [
@@ -27,7 +31,10 @@ import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent
   ],
   //Exportamos todos los componentes para que cuando se importe
   //este modulo tbm se importen automaticamente
@@ -40,7 +47,8 @@ import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    HospitalesComponent
   ],
   imports: [ 
     CommonModule,
@@ -48,7 +56,8 @@ import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
     RouterModule,
     ComponentsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ]
 })
 export class PagesModule{
