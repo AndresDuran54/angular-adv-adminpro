@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Usuarios</h3>
+
+                <div class="alert alert-info"
+                    *ngIf="this.usuarios.length == 0">
+                    <div class="mb-0">
+                        <p>
+                            No hay usuario con ese término
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-response"
+                    *ngIf="this.usuarios.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>
+                                    <img src="usuario.imagenUsuario" alt=""
+                                        class="avatar w100">
+                                </td>
+                                <td>
+                                    {{usuario.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Hospital</h3>
+
+                <div class="alert alert-info"
+                    *ngIf="this.hospitales.length == 0">
+                
+                    <div class="mb-0">
+                        <p>
+                            No hay hospitales con ese término
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-response"
+                    *ngIf="this.hospitales.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales">
+                                <td>
+                                    <img [src]="hospital.img | imagen: 'hospitales'" alt=""
+                                        class="avatar w100">
+                                </td>
+                                <td>
+                                    {{hospital.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Médicos</h3>
+
+                <div class="alert alert-info"
+                    *ngIf="this.medicos.length == 0">
+                
+                    <div class="mb-0">
+                        <p>
+                            No hay médicos con ese término
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-response"
+                    *ngIf="this.medicos.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos">
+                                <td>
+                                    <img [src]="medico.img | imagen: 'medicos'" alt=""
+                                        class="avatar w100">
+                                </td>
+                                <td>
+                                    {{medico.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

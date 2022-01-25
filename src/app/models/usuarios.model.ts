@@ -8,7 +8,7 @@ export class Usuario{
         public nombre :String,
         public email :String,
         public img? :String,
-        public role? :String,
+        public role? : "ADMIN_ROL" | "USER_ROL",
         public google? :boolean,
         public uid? :String,
     ){

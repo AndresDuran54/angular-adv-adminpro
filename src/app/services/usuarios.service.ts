@@ -21,6 +21,10 @@ export class UsuariosService {
   public auth2: any;
   public usuario: Usuario | undefined;
 
+  get role(){
+    return this.usuario?.role ?? "USER_ROL";
+  }
+
   get token(){
     return localStorage.getItem('token') || '';
   }

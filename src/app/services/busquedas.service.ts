@@ -27,6 +27,19 @@ export class BusquedasService {
     };
   }
 
+  busquedaGlobal(
+    termino: string
+  ){
+    const url = `${base_url}/todo/${termino}`;
+    //http://localhost:3000/api/todo/coleccion/usuarios/a
+    return this.http.get<any>(
+      url,
+      {
+        headers: this.headers
+      }      
+    );
+  }
+
   busquedaUsuarios(
     tipo: 'usuarios' | 'doctores' | 'hospitales',
     termino: string

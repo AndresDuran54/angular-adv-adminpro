@@ -20,6 +20,7 @@ import { HospitalesComponent } from './mantenimiento/hospitales/hospitales.compo
 import { PipesModule } from '../pipes/pipes.module';
 import { MedicosComponent } from './mantenimiento/medicos/medicos.component';
 import { MedicoComponent } from './mantenimiento/medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 @NgModule({
   //Componentes que vamos a utilizar en el módulo
   declarations: [
@@ -34,7 +35,8 @@ import { MedicoComponent } from './mantenimiento/medicos/medico.component';
     UsuariosComponent,
     HospitalesComponent,
     MedicosComponent,
-    MedicoComponent
+    MedicoComponent,
+    BusquedaComponent
   ],
   //Exportamos todos los componentes para que cuando se importe
   //este modulo tbm se importen automaticamente
